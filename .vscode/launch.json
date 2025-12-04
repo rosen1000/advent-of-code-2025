@@ -10,7 +10,7 @@
       "request": "launch",
       "name": "Debug part 1",
       "program": "index.ts",
-      "args": ["run", "1"],
+      "args": ["test", "1"],
       "cwd": "${workspaceFolder}",
       "stopOnEntry": false,
       "watchMode": false
@@ -21,7 +21,7 @@
       "request": "launch",
       "name": "Debug part 2",
       "program": "index.ts",
-      "args": ["run", "2"],
+      "args": ["test", "2"],
       "cwd": "${workspaceFolder}",
       "stopOnEntry": false,
       "watchMode": false
