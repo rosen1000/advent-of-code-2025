@@ -43,10 +43,12 @@ switch (args[0]?.toLowerCase()) {
 			'./solution.ts',
 			`export default {
 	part1: (input: string): number => {
-		return 0;
+		let output = 0;
+		return output;
 	},
 	part2: (input: string): number => {
-		return 0;
+		let output = 0;
+		return output;
 	},
 };
 `
