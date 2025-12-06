@@ -39,6 +39,7 @@ switch (args[0]?.toLowerCase()) {
 		console.log('Done');
 		break;
 	case 'clear':
+	case 'reset':
 		Bun.write(
 			'./solution.ts',
 			`export default {
