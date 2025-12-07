@@ -1,3 +1,5 @@
+import util from 'util';
+
 export class Grid<T = string> {
 	data: T[][];
 	size: Vec2;
@@ -92,6 +94,10 @@ export class Vec2 {
 	}
 
 	toString() {
+		return `[${this.x}, ${this.y}]`;
+	}
+
+	[util.inspect.custom]() {
 		return `[${this.x}, ${this.y}]`;
 	}
 }

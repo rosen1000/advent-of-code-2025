@@ -1,4 +1,4 @@
-import { Grid, Vec2 } from './utils';
+import { Grid, Vec2 } from '@/utils';
 
 export default {
 	part1: (input: string): number => {
