@@ -46,6 +46,22 @@ export class Grid<T = string> {
 		return pos.x < 0 || pos.y < 0 || pos.x >= this.size.x || pos.y >= this.size.y;
 	}
 
+	count(val: T) {
+		let c = 0;
+		this.forEach((v) => {
+			if (val == v) c++;
+		});
+		return c;
+	}
+
+	countF(checker: (val: T) => boolean) {
+		let c = 0;
+		this.forEach((v) => {
+			if (checker(v)) c++;
+		});
+		return c;
+	}
+
 	forEach(iter: (value: T, pos: Vec2) => void) {
 		for (let i = 0; i < this.size.x; i++) {
 			for (let j = 0; j < this.size.y; j++) {
@@ -53,6 +69,10 @@ export class Grid<T = string> {
 				iter(this.get(pos)!, pos);
 			}
 		}
+	}
+
+	[util.inspect.custom]() {
+		return this.data.map(v => v.join('')).join('\n')
 	}
 }
 
