@@ -72,7 +72,7 @@ export class Grid<T = string> {
 	}
 
 	[util.inspect.custom]() {
-		return this.data.map(v => v.join('')).join('\n')
+		return this.data.map((v) => v.join('')).join('\n');
 	}
 }
 
@@ -119,6 +119,39 @@ export class Vec2 {
 
 	[util.inspect.custom]() {
 		return `[${this.x}, ${this.y}]`;
+	}
+}
+
+export function vec3(x: number, y: number, z: number) {
+	return new Vec3(x, y, z);
+}
+
+export class Vec3 {
+	constructor(public x: number, public y: number, public z: number) {}
+
+	add(vec: Vec3): Vec3 {
+		return new Vec3(this.x + vec.x, this.y + vec.y, this.z + vec.z);
+	}
+
+	sub(vec: Vec3): Vec3 {
+		return new Vec3(this.x - vec.x, this.y - vec.y, this.z - vec.z);
+	}
+
+	/** Return the magnitude of distance, usefull for comparing */
+	distanceFast(vec: Vec3): number {
+		return Math.pow(vec.x - this.x, 2) + Math.pow(vec.y - this.y, 2) + Math.pow(vec.z - this.z, 2);
+	}
+
+	distance(vec: Vec3): number {
+		return Math.sqrt(this.distanceFast(vec));
+	}
+
+	toString() {
+		return `[${this.x}, ${this.y}, ${this.z}]`;
+	}
+
+	[util.inspect.custom]() {
+		return `[${this.x}, ${this.y}, ${this.z}]`;
 	}
 }
 
