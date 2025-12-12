@@ -1,5 +1,13 @@
 import util from 'util';
 
+export function shapeGrid<T>(x: number, y: number, defaultValue: T) {
+	let data = Array.from({ length: y }, () => Array(x).fill(defaultValue));
+	let grid = new Grid<T>('');
+	grid.data = data;
+	grid.size = vec2(x, y);
+	return grid;
+}
+
 export class Grid<T = string> {
 	data: T[][];
 	size: Vec2;
@@ -11,7 +19,7 @@ export class Grid<T = string> {
 
 	get(pos: Vec2): T | null {
 		if (this.oob(pos)) return null;
-		return this.data[pos.x][pos.y];
+		return this.data[pos.y][pos.x];
 	}
 
 	getRel(pos: Vec2, dir: Vec2): T | null {
@@ -35,7 +43,7 @@ export class Grid<T = string> {
 	/** @returns {boolean} True if setting was a success */
 	set(pos: Vec2, val: T): boolean {
 		if (this.oob(pos)) return false;
-		this.data[pos.x][pos.y] = val;
+		this.data[pos.y][pos.x] = val;
 		return true;
 	}
 
@@ -113,6 +121,11 @@ export class Vec2 {
 		return new Vec2(-this.y, this.x);
 	}
 
+	normalize(): Vec2 {
+		let div = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+		return new Vec2(this.x / div, this.y / div);
+	}
+
 	toString() {
 		return `[${this.x}, ${this.y}]`;
 	}
@@ -156,12 +169,12 @@ export class Vec3 {
 }
 
 export const Dir = {
-	up: new Vec2(-1, 0),
-	down: new Vec2(1, 0),
-	left: new Vec2(0, -1),
-	right: new Vec2(0, 1),
+	up: new Vec2(0, -1),
+	down: new Vec2(0, 1),
+	left: new Vec2(-1, 0),
+	right: new Vec2(1, 0),
 	upleft: new Vec2(-1, -1),
-	upright: new Vec2(-1, 1),
-	downleft: new Vec2(1, -1),
+	upright: new Vec2(1, -1),
+	downleft: new Vec2(-1, 1),
 	downright: new Vec2(1, 1),
 } as const;

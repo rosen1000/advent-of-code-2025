@@ -1,4 +1,4 @@
-import { Vec3, vec3 } from './utils';
+import { Vec3, vec3 } from '@/utils';
 
 export default {
 	part1: (input: string): number => {
